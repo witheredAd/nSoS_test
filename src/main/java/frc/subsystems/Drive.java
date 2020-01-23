@@ -45,6 +45,8 @@ public class Drive extends ScheduledTask{
   
     public Encoder encoderElevator = RobotMap.encoderElevator;
   
+    private static final Drive instance = new Drive();
+
     public Drive(){
         super(20);
      
@@ -58,7 +60,10 @@ public class Drive extends ScheduledTask{
       differentialDrive.setSafetyEnabled(false);
       differentialDrive.setExpiration(0.1);
       differentialDrive.setMaxOutput(1.0);
-  
+    }
+
+    public static Drive getInstance(){
+        return instance;
     }
   
   

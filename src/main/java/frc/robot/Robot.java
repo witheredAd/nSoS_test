@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.subsystems.Drive;
 import frc.utils.ScheduleService;
 
 /**
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   public static OI oi;
+  Drive drive = Drive.getInstance();
 
   // TODO: number of subsystems INSTEAD OF 5
   ExecutorService executor = Executors.newFixedThreadPool(5);
@@ -44,6 +46,9 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    scheduler.add(drive);
+
   }
 
   /**
